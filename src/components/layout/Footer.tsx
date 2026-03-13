@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, ArrowRight } from "lucide-react";
 import { siteConfig, footerLinks } from "@/lib/data/navigation";
 
@@ -12,13 +13,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-flex flex-col leading-none mb-6 group">
-              <span className="text-[var(--obsidian-white)] font-bold text-xl tracking-wide group-hover:text-[var(--obsidian-accent)] transition-colors">
-                OBSIDIAN
-              </span>
-              <span className="text-[var(--obsidian-accent)] text-xs tracking-[0.2em] uppercase font-medium">
-                Arts Films
-              </span>
+            <Link href="/" className="inline-flex mb-6 group" aria-label="OBSIDIAN Arts Films">
+              <Image
+                src="/logo.png"
+                alt={siteConfig.name}
+                width={160}
+                height={56}
+                className="h-12 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                style={{ filter: "invert(1) brightness(1.1)" }}
+              />
             </Link>
             <p className="text-[var(--obsidian-text-muted)] text-sm leading-relaxed max-w-sm mb-6">
               Studio créatif & digital : vidéo, web et automatisation.

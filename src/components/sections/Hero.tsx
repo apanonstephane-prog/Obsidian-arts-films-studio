@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Zap, SlidersHorizontal, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
@@ -40,9 +40,17 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Label */}
+          {/* Logo hero */}
           <div className="flex justify-center mb-8 animate-fade-in-up">
-            <span className="tag">Studio créatif & digital</span>
+            <Image
+              src="/logo.png"
+              alt="OBSIDIAN Arts Films"
+              width={280}
+              height={220}
+              className="w-48 sm:w-56 md:w-64 h-auto object-contain drop-shadow-2xl"
+              style={{ filter: "invert(1) brightness(1.15)" }}
+              priority
+            />
           </div>
 
           {/* Heading */}

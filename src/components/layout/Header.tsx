@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { navLinks, siteConfig } from "@/lib/data/navigation";
@@ -23,7 +24,6 @@ export function Header() {
     setIsOpen(false);
   }, [pathname]);
 
-  // Prevent body scroll when mobile menu open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -45,18 +45,22 @@ export function Header() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
+
             {/* Logo */}
             <Link
               href="/"
-              className="flex flex-col leading-none group"
+              className="flex items-center group"
               aria-label="OBSIDIAN Arts Films — Accueil"
             >
-              <span className="text-[var(--obsidian-white)] font-bold text-lg tracking-wide group-hover:text-[var(--obsidian-accent)] transition-colors">
-                OBSIDIAN
-              </span>
-              <span className="text-[var(--obsidian-accent)] text-xs tracking-[0.2em] uppercase font-medium">
-                Arts Films
-              </span>
+              <Image
+                src="/logo.png"
+                alt={siteConfig.name}
+                width={140}
+                height={48}
+                className="h-10 w-auto object-contain transition-opacity group-hover:opacity-80"
+                style={{ filter: "invert(1) brightness(1.1)" }}
+                priority
+              />
             </Link>
 
             {/* Desktop nav */}
@@ -122,9 +126,14 @@ export function Header() {
         )}
       >
         <div className="flex items-center justify-between px-6 h-16 border-b border-[var(--obsidian-border)]">
-          <span className="text-[var(--obsidian-accent)] text-xs tracking-[0.2em] uppercase font-medium">
-            Menu
-          </span>
+          <Image
+            src="/logo.png"
+            alt={siteConfig.name}
+            width={100}
+            height={34}
+            className="h-7 w-auto object-contain"
+            style={{ filter: "invert(1) brightness(1.1)" }}
+          />
           <button
             className="p-2 text-[var(--obsidian-text-muted)] hover:text-[var(--obsidian-text)] rounded-lg"
             onClick={() => setIsOpen(false)}
