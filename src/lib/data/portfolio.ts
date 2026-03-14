@@ -58,6 +58,17 @@ export const portfolioItems: PortfolioItem[] = [
     embedSrc: "Fb64RXzGRI4",
   },
   {
+    id: "7",
+    title: "Nostalgique — Monstaaa L'Ovni",
+    category: "musique",
+    categoryLabel: "Clip musical",
+    description:
+      "Clip musical pour Monstaaa L'Ovni — une plongée nostalgique dans l'univers de l'artiste.",
+    available: true,
+    embedType: "youtube",
+    embedSrc: "MaR2_54qQIc",
+  },
+  {
     id: "5",
     title: "Aides Particuliers & Associations",
     category: "ia",
