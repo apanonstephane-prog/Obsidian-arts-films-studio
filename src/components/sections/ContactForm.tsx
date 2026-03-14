@@ -113,14 +113,13 @@ export function ContactForm() {
 
     setStatus("loading");
 
-    // ─── Brancher ici Resend / Formspree / Supabase ───────────────────────────
-    // Exemple Formspree : fetch("https://formspree.io/f/YOUR_FORM_ID", { method: "POST", body: JSON.stringify(form) })
-    // Exemple Resend : POST /api/contact qui utilise resend.emails.send(...)
-    // ─────────────────────────────────────────────────────────────────────────
-
     try {
-      // Simulation d'envoi (remplacer par l'appel réel)
-      await new Promise((res) => setTimeout(res, 1200));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Erreur serveur");
       setStatus("success");
       setForm(initialForm);
     } catch {
