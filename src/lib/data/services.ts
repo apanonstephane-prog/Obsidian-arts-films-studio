@@ -1,6 +1,7 @@
 export interface Service {
   id: string;
   icon: string;
+  image?: string;
   title: string;
   shortDescription: string;
   fullDescription: string;
@@ -12,6 +13,7 @@ export const services: Service[] = [
   {
     id: "clips",
     icon: "Music",
+    image: "/images/service-clips-musicaux.jpg",
     title: "Clips musicaux",
     shortDescription:
       "Donnez une identité visuelle forte à votre projet musical.",
@@ -29,6 +31,7 @@ export const services: Service[] = [
   {
     id: "pub",
     icon: "Megaphone",
+    image: "/images/service-video-pub.jpg",
     title: "Vidéos publicitaires",
     shortDescription:
       "Mettez en valeur votre marque avec une vidéo qui marque les esprits.",
@@ -46,6 +49,7 @@ export const services: Service[] = [
   {
     id: "social",
     icon: "Smartphone",
+    image: "/images/service-reseaux-sociaux.jpg",
     title: "Contenus réseaux sociaux",
     shortDescription:
       "Des formats courts et efficaces pour booster votre présence en ligne.",
@@ -63,6 +67,7 @@ export const services: Service[] = [
   {
     id: "teasers",
     icon: "Film",
+    image: "/images/service-teasers.jpg",
     title: "Teasers, reels & trailers",
     shortDescription:
       "Créez l'anticipation et suscitez l'envie avant chaque lancement.",
@@ -80,6 +85,7 @@ export const services: Service[] = [
   {
     id: "web",
     icon: "Globe",
+    image: "/images/service-sites-web.jpg",
     title: "Sites internet",
     shortDescription:
       "Une présence web claire, rapide et professionnelle pour votre activité.",
@@ -97,6 +103,7 @@ export const services: Service[] = [
   {
     id: "ia",
     icon: "Bot",
+    image: "/images/service-ia-automatisation.jpg",
     title: "Agents IA & automatisation",
     shortDescription:
       "Gagnez du temps et professionnalisez votre activité avec l'intelligence artificielle.",

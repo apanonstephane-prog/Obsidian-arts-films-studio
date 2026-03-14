@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight, Mail } from "lucide-react";
 import { Section, Container } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
@@ -7,17 +8,32 @@ interface CTABlockProps {
   title?: string;
   subtitle?: string;
   dark?: boolean;
+  bgImage?: string;
 }
 
 export function CTABlock({
   title = "Parlons de votre projet",
   subtitle = "Que vous ayez une idée précise ou juste une envie de faire avancer les choses, c'est par ici que ça commence. Échange gratuit, sans engagement.",
   dark,
+  bgImage = "/images/cta-final-bg.jpg",
 }: CTABlockProps) {
   return (
     <Section dark={dark} id="contact-cta">
       <Container>
         <div className="relative overflow-hidden rounded-2xl border border-[var(--obsidian-border)] bg-[var(--obsidian-card)] p-8 md:p-14 text-center">
+          {/* Background image */}
+          {bgImage && (
+            <div className="absolute inset-0" aria-hidden="true">
+              <Image
+                src={bgImage}
+                alt=""
+                fill
+                className="object-cover object-center opacity-20"
+                sizes="(max-width: 1280px) 100vw, 1280px"
+              />
+            </div>
+          )}
+
           {/* Glow */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -29,7 +45,7 @@ export function CTABlock({
           />
 
           <div className="relative z-10">
-            <span className="tag mb-6 inline-flex">Passons à l'action</span>
+            <span className="tag mb-6 inline-flex">Passons à l&apos;action</span>
             <h2 className="text-3xl md:text-5xl font-bold text-[var(--obsidian-white)] mb-5 leading-tight">
               {title}
             </h2>

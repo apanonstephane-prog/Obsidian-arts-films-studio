@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Eye, Sparkles, MessageSquare, RefreshCw, Zap } from "lucide-react";
 import { Section, Container, SectionHeader } from "@/components/ui/Section";
 import { CTABlock } from "@/components/sections/CTABlock";
@@ -55,8 +56,24 @@ export default function AProposPage() {
             "radial-gradient(ellipse 70% 40% at 50% -10%, rgba(200,169,110,0.09) 0%, transparent 70%)",
         }}
       >
+        {/* Studio setup background image */}
+        <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+          <Image
+            src="/images/apropos-setup-studio.jpg"
+            alt=""
+            fill
+            className="object-cover object-center opacity-15"
+            priority
+            sizes="100vw"
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to right, rgba(10,10,11,0.9) 40%, rgba(10,10,11,0.4) 100%)" }}
+          />
+        </div>
+
         <Container>
-          <div className="max-w-3xl">
+          <div className="relative max-w-3xl">
             <span className="tag mb-5 inline-flex">À propos</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--obsidian-white)] leading-tight mb-5">
               Un studio créatif au service de vos projets
@@ -111,24 +128,42 @@ export default function AProposPage() {
               </div>
             </div>
 
-            {/* Stats / highlights */}
-            <div className="grid grid-cols-2 gap-5">
-              {[
-                { label: "Services proposés", value: "8+" },
-                { label: "Secteurs accompagnés", value: "Tous" },
-                { label: "Approche", value: "Sur mesure" },
-                { label: "Réponse", value: "Rapide" },
-              ].map(({ label, value }) => (
+            {/* Studio images + stats */}
+            <div className="flex flex-col gap-5">
+              {/* Coulisses image */}
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-[var(--obsidian-border)]">
+                <Image
+                  src="/images/apropos-coulisses.jpg"
+                  alt="Coulisses du studio OBSIDIAN Arts Films"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
                 <div
-                  key={label}
-                  className="p-6 rounded-xl bg-[var(--obsidian-card)] border border-[var(--obsidian-border)] text-center"
-                >
-                  <div className="text-3xl font-bold text-[var(--obsidian-accent)] mb-1">
-                    {value}
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(10,10,11,0.6) 0%, transparent 60%)" }}
+                />
+              </div>
+
+              {/* Stats grid */}
+              <div className="grid grid-cols-2 gap-5">
+                {[
+                  { label: "Services proposés", value: "8+" },
+                  { label: "Secteurs accompagnés", value: "Tous" },
+                  { label: "Approche", value: "Sur mesure" },
+                  { label: "Réponse", value: "Rapide" },
+                ].map(({ label, value }) => (
+                  <div
+                    key={label}
+                    className="p-6 rounded-xl bg-[var(--obsidian-card)] border border-[var(--obsidian-border)] text-center"
+                  >
+                    <div className="text-3xl font-bold text-[var(--obsidian-accent)] mb-1">
+                      {value}
+                    </div>
+                    <div className="text-[var(--obsidian-text-muted)] text-sm">{label}</div>
                   </div>
-                  <div className="text-[var(--obsidian-text-muted)] text-sm">{label}</div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </Container>

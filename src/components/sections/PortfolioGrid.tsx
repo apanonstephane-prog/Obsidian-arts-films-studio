@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { X, Play, Monitor, Film } from "lucide-react";
 import { Section, Container, SectionHeader } from "@/components/ui/Section";
 import { portfolioItems, categoryLabels, type PortfolioCategory, type PortfolioItem } from "@/lib/data/portfolio";
@@ -30,6 +31,7 @@ function getEmbedUrl(item: PortfolioItem): string {
 }
 
 function CardThumbnail({ item }: { item: PortfolioItem }) {
+  // YouTube: always use YouTube thumbnail (no custom thumbnail needed)
   if (item.embedType === "youtube") {
     return (
       <div className="w-full aspect-video relative overflow-hidden bg-black">
@@ -47,6 +49,28 @@ function CardThumbnail({ item }: { item: PortfolioItem }) {
     );
   }
 
+  // Instagram with custom thumbnail
+  if (item.embedType === "instagram" && item.thumbnail) {
+    return (
+      <div className="w-full aspect-video relative overflow-hidden bg-black">
+        <Image
+          src={item.thumbnail}
+          alt={item.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          onError={() => {}}
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
+          <div className="w-12 h-12 rounded-full bg-[var(--obsidian-accent)] flex items-center justify-center shadow-lg">
+            <Play size={20} fill="black" className="ml-1" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Instagram without custom thumbnail — gradient fallback
   if (item.embedType === "instagram") {
     return (
       <div className="w-full aspect-video relative overflow-hidden flex items-center justify-center"
@@ -63,6 +87,32 @@ function CardThumbnail({ item }: { item: PortfolioItem }) {
     );
   }
 
+  // iFrame with custom thumbnail
+  if (item.embedType === "iframe" && item.thumbnail) {
+    return (
+      <div className="w-full aspect-video relative overflow-hidden bg-[var(--obsidian-muted)]">
+        <Image
+          src={item.thumbnail}
+          alt={item.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          onError={() => {}}
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
+          <div className="w-12 h-12 rounded-full bg-[var(--obsidian-accent)] flex items-center justify-center shadow-lg">
+            {item.category === "web" ? (
+              <Monitor size={20} className="text-black" />
+            ) : (
+              <Film size={20} className="text-black" />
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // iFrame without thumbnail — minimal fallback
   if (item.embedType === "iframe") {
     return (
       <div className="w-full aspect-video relative overflow-hidden bg-[var(--obsidian-muted)] flex items-center justify-center">

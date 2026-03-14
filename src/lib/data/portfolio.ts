@@ -10,6 +10,7 @@ export interface PortfolioItem {
   available: boolean;
   embedType?: EmbedType;
   embedSrc?: string;
+  thumbnail?: string;
 }
 
 export const portfolioItems: PortfolioItem[] = [
@@ -23,6 +24,7 @@ export const portfolioItems: PortfolioItem[] = [
     available: true,
     embedType: "instagram",
     embedSrc: "DUHmMrVjKcm",
+    thumbnail: "/images/portfolio-petits-plans-prives.jpg",
   },
   {
     id: "2",
@@ -34,6 +36,7 @@ export const portfolioItems: PortfolioItem[] = [
     available: true,
     embedType: "instagram",
     embedSrc: "DTA05bTkVc9",
+    thumbnail: "/images/portfolio-burning-edition.jpg",
   },
   {
     id: "3",
@@ -45,6 +48,7 @@ export const portfolioItems: PortfolioItem[] = [
     available: true,
     embedType: "instagram",
     embedSrc: "DTlpYDyDKGQ",
+    thumbnail: "/images/portfolio-moostik.jpg",
   },
   {
     id: "4",
@@ -67,6 +71,7 @@ export const portfolioItems: PortfolioItem[] = [
     available: true,
     embedType: "instagram",
     embedSrc: "DV12REpjPVz",
+    thumbnail: "/images/portfolio-warcraft-cadifor.jpg",
   },
   {
     id: "8",
@@ -78,6 +83,7 @@ export const portfolioItems: PortfolioItem[] = [
     available: true,
     embedType: "instagram",
     embedSrc: "DTQbDgtiBvY",
+    thumbnail: "/images/portfolio-xman.jpg",
   },
   {
     id: "7",
@@ -100,6 +106,7 @@ export const portfolioItems: PortfolioItem[] = [
     available: true,
     embedType: "iframe",
     embedSrc: "https://aides-particulier-association.vercel.app",
+    thumbnail: "/images/portfolio-aides-ia.jpg",
   },
   {
     id: "6",
@@ -111,6 +118,7 @@ export const portfolioItems: PortfolioItem[] = [
     available: true,
     embedType: "iframe",
     embedSrc: "https://occiflow.vercel.app",
+    thumbnail: "/images/portfolio-occiflow.jpg",
   },
 ];
 

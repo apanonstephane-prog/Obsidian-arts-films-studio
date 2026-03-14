@@ -2,6 +2,8 @@ import Image from "next/image";
 import { ArrowRight, Zap, SlidersHorizontal, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
+const HERO_IMAGE = "/images/hero-main.jpg";
+
 const badges = [
   { icon: Zap, label: "Réponse rapide" },
   { icon: SlidersHorizontal, label: "Solutions sur mesure" },
@@ -16,6 +18,26 @@ export function Hero() {
     >
       {/* Background */}
       <div className="absolute inset-0 bg-[var(--obsidian-black)]" aria-hidden="true" />
+
+      {/* Hero background image */}
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <Image
+          src={HERO_IMAGE}
+          alt=""
+          fill
+          className="object-cover object-center opacity-30"
+          priority
+          sizes="100vw"
+        />
+        {/* Dark gradient overlay to keep text readable */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(10,10,11,0.6) 0%, rgba(10,10,11,0.3) 40%, rgba(10,10,11,0.7) 100%)",
+          }}
+        />
+      </div>
 
       {/* Radial glow */}
       <div
