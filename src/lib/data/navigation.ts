@@ -28,7 +28,7 @@ export const footerLinks = {
 export const siteConfig = {
   name: "OBSIDIAN Arts Films",
   tagline: "Studio créatif & digital",
-  email: "contact@obsidian-arts-films.fr",
+  email: "contact@obsidian-arts-films-studio.fr",
   description:
     "Studio créatif & digital : vidéo, web, automatisation et agents IA. Solutions sur mesure pour artistes, professionnels et particuliers.",
 };

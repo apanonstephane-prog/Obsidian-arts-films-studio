@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "contact@obsidian-arts-films.fr";
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "contact@obsidian-arts-films-studio.fr";
 
 export async function POST(req: NextRequest) {
   if (!RESEND_API_KEY) {
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await resend.emails.send({
-      from: "Obsidian Arts Films <noreply@obsidian-arts-films.fr>",
+      from: "Obsidian Arts Films <noreply@obsidian-arts-films-studio.fr>",
       to: CONTACT_EMAIL,
       replyTo: email,
       subject: `Demande de devis — ${service} (${typeClient})`,
