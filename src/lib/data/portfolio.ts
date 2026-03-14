@@ -58,6 +58,17 @@ export const portfolioItems: PortfolioItem[] = [
     embedSrc: "Fb64RXzGRI4",
   },
   {
+    id: "8",
+    title: "Juste Une Minute — Monstaaa L'Ovni",
+    category: "musique",
+    categoryLabel: "Clip musical",
+    description:
+      "Clip musical Instagram pour Monstaaa L'Ovni — Juste Une Minute.",
+    available: true,
+    embedType: "instagram",
+    embedSrc: "DTQbDgtiBvY",
+  },
+  {
     id: "7",
     title: "Nostalgique — Monstaaa L'Ovni",
     category: "musique",
