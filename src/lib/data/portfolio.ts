@@ -58,6 +58,17 @@ export const portfolioItems: PortfolioItem[] = [
     embedSrc: "Fb64RXzGRI4",
   },
   {
+    id: "9",
+    title: "Warcraft : Cadifor",
+    category: "video",
+    categoryLabel: "Teaser",
+    description:
+      "Teaser cinématique Warcraft : Cadifor. Réalisé par Gary_Byss.",
+    available: true,
+    embedType: "instagram",
+    embedSrc: "DV12REpjPVz",
+  },
+  {
     id: "8",
     title: "Juste Une Minute — Monstaaa L'Ovni",
     category: "musique",
