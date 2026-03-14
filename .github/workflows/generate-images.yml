@@ -1,0 +1,58 @@
+name: Générer les images IA
+
+on:
+  workflow_dispatch:
+    inputs:
+      skip_existing:
+        description: "Ignorer les images déjà présentes"
+        required: false
+        default: "true"
+        type: boolean
+
+jobs:
+  generate:
+    name: Générer et committer les images
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout du repo
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Installer replicate
+        run: npm install replicate
+
+      - name: Générer les images
+        env:
+          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+        run: node generate-images.js
+
+      - name: Vérifier les images générées
+        run: |
+          echo "Images dans public/images/ :"
+          ls -lh public/images/ | grep -v ".gitkeep" || echo "(aucune image)"
+          echo "Total :"
+          find public/images -name "*.jpg" -o -name "*.png" -o -name "*.webp" | wc -l
+
+      - name: Committer les images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/images/
+          if git diff --staged --quiet; then
+            echo "Aucune nouvelle image à committer."
+          else
+            git commit -m "feat: ajout des images générées par IA ($(date '+%Y-%m-%d %H:%M'))"
+            git push origin main
+            echo "✅ Images committées et poussées sur main."
+          fi
