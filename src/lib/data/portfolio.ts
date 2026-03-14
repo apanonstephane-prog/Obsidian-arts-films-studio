@@ -1,4 +1,5 @@
 export type PortfolioCategory = "video" | "musique" | "publicite" | "web" | "ia";
+export type EmbedType = "youtube" | "instagram" | "iframe";
 
 export interface PortfolioItem {
   id: string;
@@ -6,71 +7,77 @@ export interface PortfolioItem {
   category: PortfolioCategory;
   categoryLabel: string;
   description: string;
-  thumbnail: string;
   available: boolean;
-  link?: string;
+  embedType?: EmbedType;
+  embedSrc?: string;
 }
 
 export const portfolioItems: PortfolioItem[] = [
   {
     id: "1",
-    title: "Clip artistique — Projet Lumière",
-    category: "musique",
-    categoryLabel: "Clip musical",
-    description:
-      "Direction artistique complète et tournage d'un clip pour un artiste indépendant. Rendu cinématographique, ambiance nocturne et urbaine.",
-    thumbnail: "/portfolio/clip-01.jpg",
-    available: false,
-  },
-  {
-    id: "2",
-    title: "Campagne vidéo — Marque locale",
+    title: "Petits Plans Privés",
     category: "publicite",
     categoryLabel: "Publicité",
     description:
-      "Série de trois formats vidéo pour le lancement d'une marque locale. Adapté pour les réseaux sociaux et les supports digitaux.",
-    thumbnail: "/portfolio/pub-01.jpg",
-    available: false,
+      "Création d'une publicité Instagram pour Petits Plans Privés. Format Reels optimisé pour l'engagement sur les réseaux sociaux.",
+    available: true,
+    embedType: "instagram",
+    embedSrc: "DUHmMrVjKcm",
+  },
+  {
+    id: "2",
+    title: "Soirée Burning Edition PLAYBOY",
+    category: "publicite",
+    categoryLabel: "Publicité",
+    description:
+      "Publicité événementielle pour la soirée Burning Edition PLAYBOY. Contenu percutant adapté aux réseaux sociaux.",
+    available: true,
+    embedType: "instagram",
+    embedSrc: "DTA05bTkVc9",
   },
   {
     id: "3",
-    title: "Site vitrine — Cabinet conseil",
-    category: "web",
-    categoryLabel: "Site internet",
+    title: "Moostik — Teaser Série Animée",
+    category: "video",
+    categoryLabel: "Série animée",
     description:
-      "Création d'un site vitrine professionnel pour un cabinet de conseil. Design épuré, rapide, optimisé SEO et entièrement responsive.",
-    thumbnail: "/portfolio/web-01.jpg",
-    available: false,
+      "Teaser de la série animée Moostik. Animation originale à l'univers coloré et décalé, diffusée sur Instagram.",
+    available: true,
+    embedType: "instagram",
+    embedSrc: "DTlpYDyDKGQ",
   },
   {
     id: "4",
-    title: "Assistant IA — Service client",
-    category: "ia",
-    categoryLabel: "Agent IA",
-    description:
-      "Déploiement d'un assistant de qualification automatique pour une TPE. Réduction du temps de réponse et meilleure organisation des demandes.",
-    thumbnail: "/portfolio/ia-01.jpg",
-    available: false,
-  },
-  {
-    id: "5",
-    title: "Reels événement — Soirée lancement",
-    category: "video",
-    categoryLabel: "Vidéo",
-    description:
-      "Captation et montage de reels dynamiques pour la soirée de lancement d'un nouveau concept. Livraison en 48h.",
-    thumbnail: "/portfolio/event-01.jpg",
-    available: false,
-  },
-  {
-    id: "6",
-    title: "Identité digitale — Artiste émergent",
+    title: "X-MAN — Ki Manniè Pou Fè",
     category: "musique",
     categoryLabel: "Clip musical",
     description:
-      "Accompagnement complet d'un artiste émergent : clip, visuels, contenu réseaux. Cohérence d'image de A à Z.",
-    thumbnail: "/portfolio/artist-01.jpg",
-    available: false,
+      "Visualizer musical 100% généré par intelligence artificielle pour l'artiste X-MAN. Esthétique unique et immersive.",
+    available: true,
+    embedType: "youtube",
+    embedSrc: "Fb64RXzGRI4",
+  },
+  {
+    id: "5",
+    title: "Aides Particuliers & Associations",
+    category: "ia",
+    categoryLabel: "Application web",
+    description:
+      "Plateforme gratuite d'orientation vers les aides disponibles pour particuliers et associations. Interface simple, accès rapide.",
+    available: true,
+    embedType: "iframe",
+    embedSrc: "https://aides-particulier-association.vercel.app",
+  },
+  {
+    id: "6",
+    title: "OcciFlow — Plateforme Territoriale",
+    category: "web",
+    categoryLabel: "Site web",
+    description:
+      "Plateforme territoriale modulaire dédiée à l'Occitanie. Outil numérique au service des acteurs locaux et des collectivités.",
+    available: true,
+    embedType: "iframe",
+    embedSrc: "https://occiflow.vercel.app",
   },
 ];
 
@@ -79,5 +86,5 @@ export const categoryLabels: Record<PortfolioCategory, string> = {
   musique: "Musique",
   publicite: "Publicité",
   web: "Web",
-  ia: "IA / Automatisation",
+  ia: "IA / App",
 };
