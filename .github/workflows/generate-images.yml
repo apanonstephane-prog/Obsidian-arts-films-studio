@@ -21,8 +21,6 @@ jobs:
     steps:
       - name: Checkout du repo
         uses: actions/checkout@v4
-        with:
-          ref: main
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -53,6 +51,6 @@ jobs:
             echo "Aucune nouvelle image à committer."
           else
             git commit -m "feat: ajout des images générées par IA ($(date '+%Y-%m-%d %H:%M'))"
-            git push origin main
-            echo "✅ Images committées et poussées sur main."
+            git push origin HEAD
+            echo "✅ Images committées et poussées."
           fi
