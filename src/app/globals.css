@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --obsidian-black: #0a0a0b;
-  --obsidian-dark: #111114;
-  --obsidian-card: #16161a;
-  --obsidian-border: #242428;
-  --obsidian-muted: #2a2a30;
-  --obsidian-text: #e8e8ec;
-  --obsidian-text-muted: #8888a0;
-  --obsidian-text-subtle: #555568;
+  --obsidian-black: #0f0f12;
+  --obsidian-dark: #161619;
+  --obsidian-card: #1e1e24;
+  --obsidian-border: #2e2e36;
+  --obsidian-muted: #343440;
+  --obsidian-text: #ebebef;
+  --obsidian-text-muted: #9a9ab4;
+  --obsidian-text-subtle: #6a6a82;
   --obsidian-accent: #c8a96e;
   --obsidian-accent-hover: #d4ba84;
-  --obsidian-accent-dim: rgba(200, 169, 110, 0.13);
-  --obsidian-white: #f0f0f5;
+  --obsidian-accent-dim: rgba(200, 169, 110, 0.15);
+  --obsidian-white: #f2f2f7;
 }
 
 @theme inline {
