@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { X, Play, Monitor, Film } from "lucide-react";
 import { Section, Container, SectionHeader } from "@/components/ui/Section";
@@ -30,6 +30,36 @@ function getEmbedUrl(item: PortfolioItem): string {
   }
 }
 
+function VideoThumbnail({ item }: { item: PortfolioItem }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const onLoaded = () => { video.currentTime = 0.1; };
+    video.addEventListener("loadedmetadata", onLoaded);
+    return () => video.removeEventListener("loadedmetadata", onLoaded);
+  }, []);
+
+  return (
+    <div className="w-full aspect-video relative overflow-hidden bg-black">
+      <video
+        ref={videoRef}
+        src={item.embedSrc}
+        preload="metadata"
+        muted
+        playsInline
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+      <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
+        <div className="w-12 h-12 rounded-full bg-[var(--obsidian-accent)] flex items-center justify-center shadow-lg">
+          <Play size={20} fill="black" className="ml-1" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CardThumbnail({ item }: { item: PortfolioItem }) {
   // YouTube: always use YouTube thumbnail (no custom thumbnail needed)
   if (item.embedType === "youtube") {
@@ -49,25 +79,9 @@ function CardThumbnail({ item }: { item: PortfolioItem }) {
     );
   }
 
-  // Direct MP4 video with thumbnail
-  if (item.embedType === "video" && item.thumbnail) {
-    return (
-      <div className="w-full aspect-video relative overflow-hidden bg-black">
-        <Image
-          src={item.thumbnail}
-          alt={item.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          onError={() => {}}
-        />
-        <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
-          <div className="w-12 h-12 rounded-full bg-[var(--obsidian-accent)] flex items-center justify-center shadow-lg">
-            <Play size={20} fill="black" className="ml-1" />
-          </div>
-        </div>
-      </div>
-    );
+  // Direct MP4 video — use first frame as thumbnail
+  if (item.embedType === "video") {
+    return <VideoThumbnail item={item} />;
   }
 
   // Instagram with custom thumbnail
