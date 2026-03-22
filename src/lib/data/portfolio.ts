@@ -23,7 +23,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Création d'une publicité Instagram pour Petits Plans Privés. Format Reels optimisé pour l'engagement sur les réseaux sociaux.",
     available: true,
     embedType: "video",
-    embedSrc: "/videos/petits-plans-prives.mp4",
+    embedSrc: "/videos/petits%20plans%20priv%C3%A9s.mp4",
     thumbnail: "/images/portfolio-petits-plans-prives.jpg",
   },
   {
@@ -35,7 +35,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Publicité événementielle pour la soirée Burning Edition PLAYBOY. Contenu percutant adapté aux réseaux sociaux.",
     available: true,
     embedType: "video",
-    embedSrc: "/videos/burning-edition.mp4",
+    embedSrc: "/videos/burning%20playboy.mp4",
     thumbnail: "/images/portfolio-burning-edition.jpg",
   },
   {
@@ -82,7 +82,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Clip musical pour Monstaaa L'Ovni — Juste Une Minute.",
     available: true,
     embedType: "video",
-    embedSrc: "/videos/juste-une-minute.mp4",
+    embedSrc: "/videos/juste%20une%20minute.mp4",
     thumbnail: "/images/portfolio-xman.jpg",
   },
   {
