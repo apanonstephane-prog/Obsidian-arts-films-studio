@@ -79,7 +79,27 @@ function CardThumbnail({ item }: { item: PortfolioItem }) {
     );
   }
 
-  // Direct MP4 video — use first frame as thumbnail
+  // Direct MP4 video with thumbnail image
+  if (item.embedType === "video" && item.thumbnail) {
+    return (
+      <div className="w-full aspect-video relative overflow-hidden bg-black">
+        <Image
+          src={item.thumbnail}
+          alt={item.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
+          <div className="w-12 h-12 rounded-full bg-[var(--obsidian-accent)] flex items-center justify-center shadow-lg">
+            <Play size={20} fill="black" className="ml-1" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Direct MP4 video without thumbnail — use first frame as fallback
   if (item.embedType === "video") {
     return <VideoThumbnail item={item} />;
   }
