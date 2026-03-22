@@ -109,6 +109,18 @@ export const portfolioItems: PortfolioItem[] = [
     thumbnail: "/images/portfolio-aides-ia.jpg",
   },
   {
+    id: "10",
+    title: "Bande2Loups — Beats & Productions",
+    category: "musique",
+    categoryLabel: "Site web",
+    description:
+      "Plateforme de beats et productions musicales Bande2Loups. Catalogue en ligne pour découvrir et acquérir des instrumentales.",
+    available: true,
+    embedType: "iframe",
+    embedSrc: "https://bande2loups-beats.vercel.app",
+    thumbnail: "/images/portfolio-bande2loups.jpg",
+  },
+  {
     id: "6",
     title: "OcciFlow — Plateforme Territoriale",
     category: "web",
