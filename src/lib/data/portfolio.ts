@@ -1,5 +1,5 @@
 export type PortfolioCategory = "video" | "musique" | "publicite" | "web" | "ia";
-export type EmbedType = "youtube" | "instagram" | "iframe";
+export type EmbedType = "youtube" | "instagram" | "iframe" | "video";
 
 export interface PortfolioItem {
   id: string;
@@ -22,8 +22,8 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Création d'une publicité Instagram pour Petits Plans Privés. Format Reels optimisé pour l'engagement sur les réseaux sociaux.",
     available: true,
-    embedType: "instagram",
-    embedSrc: "DUHmMrVjKcm",
+    embedType: "video",
+    embedSrc: "/videos/petits-plans-prives.mp4",
     thumbnail: "/images/portfolio-petits-plans-prives.jpg",
   },
   {
@@ -34,8 +34,8 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Publicité événementielle pour la soirée Burning Edition PLAYBOY. Contenu percutant adapté aux réseaux sociaux.",
     available: true,
-    embedType: "instagram",
-    embedSrc: "DTA05bTkVc9",
+    embedType: "video",
+    embedSrc: "/videos/burning-edition.mp4",
     thumbnail: "/images/portfolio-burning-edition.jpg",
   },
   {
@@ -46,8 +46,8 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Teaser de la série animée Moostik. Animation originale à l'univers coloré et décalé, diffusée sur Instagram.",
     available: true,
-    embedType: "instagram",
-    embedSrc: "DTlpYDyDKGQ",
+    embedType: "video",
+    embedSrc: "/videos/moostik.mp4",
     thumbnail: "/images/portfolio-moostik.jpg",
   },
   {
@@ -69,8 +69,8 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Teaser cinématique Warcraft : Cadifor. Réalisé par Gary_Byss.",
     available: true,
-    embedType: "instagram",
-    embedSrc: "DV12REpjPVz",
+    embedType: "video",
+    embedSrc: "/videos/warcraft.mp4",
     thumbnail: "/images/portfolio-warcraft-cadifor.jpg",
   },
   {
@@ -79,10 +79,10 @@ export const portfolioItems: PortfolioItem[] = [
     category: "musique",
     categoryLabel: "Clip musical",
     description:
-      "Clip musical Instagram pour Monstaaa L'Ovni — Juste Une Minute.",
+      "Clip musical pour Monstaaa L'Ovni — Juste Une Minute.",
     available: true,
-    embedType: "instagram",
-    embedSrc: "DTQbDgtiBvY",
+    embedType: "video",
+    embedSrc: "/videos/juste-une-minute.mp4",
     thumbnail: "/images/portfolio-xman.jpg",
   },
   {
