@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 const useCases = [
   {
     icon: Camera,
+    image: "/images/service-clips-musicaux.jpg",
     title: "Vidéo souvenir & événement",
     description:
       "Mariage, anniversaire, baptême, fête de famille. Une captation soignée et un montage émotionnel pour garder vos plus beaux moments.",
@@ -34,6 +35,7 @@ const useCases = [
   },
   {
     icon: Globe,
+    image: "/images/service-sites-web.jpg",
     title: "Création d'un site simple",
     description:
       "Vous voulez vous présenter en ligne, partager votre passion ou créer une page pour votre activité secondaire. On s'en occupe.",
@@ -46,6 +48,7 @@ const useCases = [
   },
   {
     icon: Lightbulb,
+    image: "/images/portfolio-aides-ia.jpg",
     title: "Mise en valeur d'un projet personnel",
     description:
       "Vous avez une idée, un projet créatif, une activité à lancer. Nous vous aidons à lui donner une vraie image et une vraie présence.",
@@ -58,6 +61,7 @@ const useCases = [
   },
   {
     icon: Star,
+    image: "/images/service-reseaux-sociaux.jpg",
     title: "Support de communication",
     description:
       "Besoin d'un flyer numérique, d'un teaser pour un événement, d'un reel pour partager quelque chose de fort ? On le crée pour vous.",
@@ -70,6 +74,7 @@ const useCases = [
   },
   {
     icon: Heart,
+    image: "/images/service-ia-automatisation.jpg",
     title: "Accompagnement digital",
     description:
       "Vous vous sentez dépassé par le digital ? Nous vous aidons à y voir clair, à structurer vos besoins et à avancer pas à pas.",
@@ -82,6 +87,7 @@ const useCases = [
   },
   {
     icon: MessageCircle,
+    image: "/images/hero-main.jpg",
     title: "Vous avez une idée, on vous aide à la structurer",
     description:
       "Vous ne savez pas encore exactement ce qu'il vous faut ? Pas de problème. Un échange suffit souvent pour y voir beaucoup plus clair.",
@@ -150,28 +156,36 @@ export default function SolutionsParticuliersPage() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {useCases.map(({ icon: Icon, title, description, items }) => (
+            {useCases.map(({ icon: Icon, image, title, description, items }) => (
               <div
                 key={title}
-                className="flex flex-col p-7 rounded-xl bg-[var(--obsidian-card)] border border-[var(--obsidian-border)] card-hover"
+                className="flex flex-col rounded-xl bg-[var(--obsidian-card)] border border-[var(--obsidian-border)] card-hover overflow-hidden"
               >
-                <div className="w-11 h-11 rounded-xl bg-[var(--obsidian-accent-dim)] flex items-center justify-center mb-5">
-                  <Icon size={20} className="text-[var(--obsidian-accent)]" />
+                {image && (
+                  <div className="relative h-44 overflow-hidden">
+                    <img src={image} alt={title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-[var(--obsidian-card)]" />
+                  </div>
+                )}
+                <div className="flex flex-col p-7 flex-1">
+                  <div className="w-11 h-11 rounded-xl bg-[var(--obsidian-accent-dim)] flex items-center justify-center mb-5">
+                    <Icon size={20} className="text-[var(--obsidian-accent)]" />
+                  </div>
+                  <h3 className="text-[var(--obsidian-white)] font-semibold text-base mb-2 leading-snug">
+                    {title}
+                  </h3>
+                  <p className="text-[var(--obsidian-text-muted)] text-sm leading-relaxed mb-5 flex-1">
+                    {description}
+                  </p>
+                  <ul className="space-y-2">
+                    {items.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-[var(--obsidian-text-muted)]">
+                        <Check size={12} className="text-[var(--obsidian-accent)] mt-0.5 flex-shrink-0" strokeWidth={2.5} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-[var(--obsidian-white)] font-semibold text-base mb-2 leading-snug">
-                  {title}
-                </h3>
-                <p className="text-[var(--obsidian-text-muted)] text-sm leading-relaxed mb-5 flex-1">
-                  {description}
-                </p>
-                <ul className="space-y-2">
-                  {items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-[var(--obsidian-text-muted)]">
-                      <Check size={12} className="text-[var(--obsidian-accent)] mt-0.5 flex-shrink-0" strokeWidth={2.5} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>

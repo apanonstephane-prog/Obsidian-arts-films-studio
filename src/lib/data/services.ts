@@ -121,6 +121,7 @@ export const services: Service[] = [
   {
     id: "pro",
     icon: "Briefcase",
+    image: "/images/cible-entreprise.jpg",
     title: "Solutions pour professionnels",
     shortDescription:
       "Communication, image et digital : un accompagnement complet pour votre activité.",
@@ -138,6 +139,7 @@ export const services: Service[] = [
   {
     id: "particuliers",
     icon: "User",
+    image: "/images/cible-particulier.jpg",
     title: "Solutions pour particuliers",
     shortDescription:
       "Votre projet personnel mérite une attention et un rendu à la hauteur.",

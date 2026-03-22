@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 const needs = [
   {
     icon: TrendingUp,
+    image: "/images/service-reseaux-sociaux.jpg",
     title: "Développer votre visibilité",
     description:
       "Vidéos, contenus réseaux sociaux, teasers et campagnes visuelles pour vous faire connaître et attirer de nouveaux clients.",
@@ -35,6 +36,7 @@ const needs = [
   },
   {
     icon: Monitor,
+    image: "/images/service-sites-web.jpg",
     title: "Présenter votre activité",
     description:
       "Un site vitrine clair, rapide et professionnel qui transforme les visiteurs en prospects et renforce votre crédibilité.",
@@ -47,6 +49,7 @@ const needs = [
   },
   {
     icon: Bot,
+    image: "/images/service-ia-automatisation.jpg",
     title: "Automatiser et gagner du temps",
     description:
       "Agents IA, réponses automatiques, qualification de demandes : des outils intelligents pour être plus efficace au quotidien.",
@@ -59,6 +62,7 @@ const needs = [
   },
   {
     icon: Award,
+    image: "/images/service-video-pub.jpg",
     title: "Obtenir une image plus professionnelle",
     description:
       "Vidéo d'entreprise, identité visuelle digitale, communication cohérente. Renforcez la confiance de vos clients et partenaires.",
@@ -71,6 +75,7 @@ const needs = [
   },
   {
     icon: Rocket,
+    image: "/images/service-teasers.jpg",
     title: "Lancer une offre ou un service",
     description:
       "Teaser de lancement, page dédiée, contenus de communication : tout pour que votre lancement soit remarqué.",
@@ -83,6 +88,7 @@ const needs = [
   },
   {
     icon: Tv,
+    image: "/images/service-clips-musicaux.jpg",
     title: "Promouvoir un produit ou événement",
     description:
       "Spot publicitaire, captation d'événement, contenus promotionnels. Une couverture complète et un rendu professionnel.",
@@ -98,31 +104,37 @@ const needs = [
 const useCases = [
   {
     title: "Artisan / Commerçant",
+    image: "/images/cible-commercant.jpg",
     description:
       "Une vidéo de présentation de votre atelier, un site pour vous trouver facilement, des contenus pour votre boutique sur les réseaux.",
   },
   {
     title: "Restaurant / Bar",
+    image: "/images/cible-entreprise.jpg",
     description:
       "Des visuels appétissants, un teaser d'ambiance, une présence en ligne claire et des clients qui reviennent.",
   },
   {
     title: "Coach / Consultant",
+    image: "/images/cible-independant.jpg",
     description:
       "Une image professionnelle qui inspire confiance, un site vitrine impeccable et des contenus qui montrent votre expertise.",
   },
   {
     title: "PME",
+    image: "/images/apropos-setup-studio.jpg",
     description:
       "Vidéo d'entreprise, site web, automatisation de la relation client et communication digitale cohérente.",
   },
   {
     title: "Association",
+    image: "/images/cible-association.jpg",
     description:
       "Donnez de la visibilité à votre cause, communiquez sur vos événements et touchez un public plus large.",
   },
   {
     title: "Organisateur d'événements",
+    image: "/images/portfolio-burning-edition.jpg",
     description:
       "Teaser d'avant-événement, captation en direct, aftermovie et diffusion sur toutes vos plateformes.",
   },
@@ -165,28 +177,36 @@ export default function SolutionsProPage() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {needs.map(({ icon: Icon, title, description, items }) => (
+            {needs.map(({ icon: Icon, image, title, description, items }) => (
               <div
                 key={title}
-                className="flex flex-col p-7 rounded-xl bg-[var(--obsidian-card)] border border-[var(--obsidian-border)] card-hover"
+                className="flex flex-col rounded-xl bg-[var(--obsidian-card)] border border-[var(--obsidian-border)] card-hover overflow-hidden"
               >
-                <div className="w-12 h-12 rounded-xl bg-[var(--obsidian-accent-dim)] flex items-center justify-center mb-5">
-                  <Icon size={22} className="text-[var(--obsidian-accent)]" />
+                {image && (
+                  <div className="relative h-44 overflow-hidden">
+                    <img src={image} alt={title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-[var(--obsidian-card)]" />
+                  </div>
+                )}
+                <div className="flex flex-col p-7 flex-1">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--obsidian-accent-dim)] flex items-center justify-center mb-5">
+                    <Icon size={22} className="text-[var(--obsidian-accent)]" />
+                  </div>
+                  <h3 className="text-[var(--obsidian-white)] font-semibold text-lg mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-[var(--obsidian-text-muted)] text-sm leading-relaxed mb-5 flex-1">
+                    {description}
+                  </p>
+                  <ul className="space-y-2">
+                    {items.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-[var(--obsidian-text-muted)]">
+                        <Check size={13} className="text-[var(--obsidian-accent)] mt-0.5 flex-shrink-0" strokeWidth={2.5} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-[var(--obsidian-white)] font-semibold text-lg mb-2">
-                  {title}
-                </h3>
-                <p className="text-[var(--obsidian-text-muted)] text-sm leading-relaxed mb-5 flex-1">
-                  {description}
-                </p>
-                <ul className="space-y-2">
-                  {items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-[var(--obsidian-text-muted)]">
-                      <Check size={13} className="text-[var(--obsidian-accent)] mt-0.5 flex-shrink-0" strokeWidth={2.5} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
@@ -203,18 +223,26 @@ export default function SolutionsProPage() {
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {useCases.map(({ title, description }) => (
+            {useCases.map(({ title, image, description }) => (
               <div
                 key={title}
-                className="p-6 rounded-xl border border-[var(--obsidian-border)] bg-[var(--obsidian-card)] card-hover"
+                className="rounded-xl border border-[var(--obsidian-border)] bg-[var(--obsidian-card)] card-hover overflow-hidden"
               >
-                <div className="accent-line mb-4" />
-                <h3 className="text-[var(--obsidian-white)] font-semibold text-base mb-2">
-                  {title}
-                </h3>
-                <p className="text-[var(--obsidian-text-muted)] text-sm leading-relaxed">
-                  {description}
-                </p>
+                {image && (
+                  <div className="relative h-40 overflow-hidden">
+                    <img src={image} alt={title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-[var(--obsidian-card)]" />
+                  </div>
+                )}
+                <div className="p-6">
+                  <div className="accent-line mb-4" />
+                  <h3 className="text-[var(--obsidian-white)] font-semibold text-base mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-[var(--obsidian-text-muted)] text-sm leading-relaxed">
+                    {description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

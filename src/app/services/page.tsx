@@ -70,42 +70,57 @@ export default function ServicesPage() {
                 <article
                   key={service.id}
                   id={service.id}
-                  className="group grid grid-cols-1 lg:grid-cols-5 gap-8 p-8 md:p-10 rounded-2xl bg-[var(--obsidian-card)] border border-[var(--obsidian-border)] hover:border-[var(--obsidian-accent)]/30 transition-colors"
+                  className="group rounded-2xl bg-[var(--obsidian-card)] border border-[var(--obsidian-border)] hover:border-[var(--obsidian-accent)]/30 transition-colors overflow-hidden"
                 >
-                  {/* Icon + title col */}
-                  <div className={`lg:col-span-2 flex flex-col justify-center ${isEven ? "" : "lg:order-last"}`}>
-                    <div className="w-14 h-14 rounded-xl bg-[var(--obsidian-accent-dim)] flex items-center justify-center mb-5">
-                      <Icon size={24} className="text-[var(--obsidian-accent)]" />
+                  {/* Image banner */}
+                  {service.image && (
+                    <div className="relative h-52 overflow-hidden">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-[var(--obsidian-card)]" />
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-[var(--obsidian-white)] mb-3 leading-tight">
-                      {service.title}
-                    </h2>
-                    <p className="text-[var(--obsidian-text-muted)] text-base leading-relaxed mb-6">
-                      {service.fullDescription}
-                    </p>
-                    <Button href="/contact" variant="primary" size="md" className="w-fit">
-                      Demander un devis
-                      <ArrowRight size={16} />
-                    </Button>
-                  </div>
+                  )}
 
-                  {/* Benefits col */}
-                  <div className={`lg:col-span-3 flex flex-col justify-center ${isEven ? "" : "lg:order-first"}`}>
-                    <h3 className="text-[var(--obsidian-text-subtle)] text-xs font-semibold tracking-wider uppercase mb-4">
-                      Ce que vous obtenez
-                    </h3>
-                    <ul className="space-y-3">
-                      {service.benefits.map((benefit) => (
-                        <li key={benefit} className="flex items-start gap-3">
-                          <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[var(--obsidian-accent-dim)] flex items-center justify-center mt-0.5">
-                            <Check size={11} className="text-[var(--obsidian-accent)]" strokeWidth={3} />
-                          </span>
-                          <span className="text-[var(--obsidian-text)] text-sm leading-relaxed">
-                            {benefit}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Content */}
+                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 p-8 md:p-10">
+                    {/* Icon + title col */}
+                    <div className={`lg:col-span-2 flex flex-col justify-center ${isEven ? "" : "lg:order-last"}`}>
+                      <div className="w-14 h-14 rounded-xl bg-[var(--obsidian-accent-dim)] flex items-center justify-center mb-5">
+                        <Icon size={24} className="text-[var(--obsidian-accent)]" />
+                      </div>
+                      <h2 className="text-2xl md:text-3xl font-bold text-[var(--obsidian-white)] mb-3 leading-tight">
+                        {service.title}
+                      </h2>
+                      <p className="text-[var(--obsidian-text-muted)] text-base leading-relaxed mb-6">
+                        {service.fullDescription}
+                      </p>
+                      <Button href="/contact" variant="primary" size="md" className="w-fit">
+                        Demander un devis
+                        <ArrowRight size={16} />
+                      </Button>
+                    </div>
+
+                    {/* Benefits col */}
+                    <div className={`lg:col-span-3 flex flex-col justify-center ${isEven ? "" : "lg:order-first"}`}>
+                      <h3 className="text-[var(--obsidian-text-subtle)] text-xs font-semibold tracking-wider uppercase mb-4">
+                        Ce que vous obtenez
+                      </h3>
+                      <ul className="space-y-3">
+                        {service.benefits.map((benefit) => (
+                          <li key={benefit} className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[var(--obsidian-accent-dim)] flex items-center justify-center mt-0.5">
+                              <Check size={11} className="text-[var(--obsidian-accent)]" strokeWidth={3} />
+                            </span>
+                            <span className="text-[var(--obsidian-text)] text-sm leading-relaxed">
+                              {benefit}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </article>
               );
