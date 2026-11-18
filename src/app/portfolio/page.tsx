@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
+import { DemoAdsGallery } from "@/components/sections/DemoAdsGallery";
 import { CTABlock } from "@/components/sections/CTABlock";
 import { Container } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
   title: "Réalisations",
   description:
-    "Découvrez les projets réalisés par OBSIDIAN Arts Films : clips musicaux, vidéos publicitaires, sites internet, agents IA. Portfolio créatif et digital.",
+    "Découvrez les réalisations d'OBSIDIAN Arts Films : films, publicités, clips, expériences web et 10 concepts publicitaires de démonstration inspirés de la Guyane.",
 };
 
 export default function PortfolioPage() {
   return (
     <>
-      {/* Page hero */}
       <section
         className="relative pt-32 pb-16 overflow-hidden"
         style={{
@@ -28,14 +28,16 @@ export default function PortfolioPage() {
             </h1>
             <div className="w-12 h-0.5 bg-[var(--obsidian-accent)] rounded mb-6" />
             <p className="text-[var(--obsidian-text-muted)] text-lg md:text-xl leading-relaxed max-w-2xl">
-              Chaque projet est une nouvelle histoire à raconter.
-              Voici un aperçu de ce que nous avons réalisé pour nos clients.
+              Découvrez nos réalisations pour les clients et notre laboratoire de création :
+              des concepts publicitaires de démonstration clairement identifiés, pour explorer
+              de nouvelles directions visuelles.
             </p>
           </div>
         </Container>
       </section>
 
       <PortfolioGrid />
+      <DemoAdsGallery />
 
       <CTABlock
         title="Votre projet sera notre prochaine réalisation"
