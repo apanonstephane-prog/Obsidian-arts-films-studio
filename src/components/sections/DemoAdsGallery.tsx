@@ -14,7 +14,7 @@ type DemoAd = {
   image: string;
 };
 
-const demoAds: DemoAd[] = [
+const guyaneAds: DemoAd[] = [
   {
     id: "wassai",
     title: "L'Amazonie en bouteille",
@@ -97,6 +97,94 @@ const demoAds: DemoAd[] = [
   },
 ];
 
+const internationalAds: DemoAd[] = [
+  {
+    "id": "nike",
+    "title": "Décolle.",
+    "brand": "Nike · Air Max Dn",
+    "sector": "Sport · Typographie",
+    "description": "Le mouvement devient langage graphique.",
+    "image": "https://static.metricool.com/planner/202611/8064555-file-12761181239481034535.png"
+  },
+  {
+    "id": "dior",
+    "title": "La nuit a un sillage.",
+    "brand": "Dior · Sauvage Elixir",
+    "sector": "Parfum · Luxe",
+    "description": "Un univers nocturne sculpté par la lumière.",
+    "image": "https://static.metricool.com/planner/202611/8064555-file-14479877713795573323.png"
+  },
+  {
+    "id": "apple",
+    "title": "Le bruit. Hors service.",
+    "brand": "Apple · AirPods Pro 3",
+    "sector": "Technologie · Minimalisme",
+    "description": "L'isolement sonore traduit en composition épurée.",
+    "image": "https://static.metricool.com/planner/202611/8064555-file-8363340266628581672.png"
+  },
+  {
+    "id": "lorina",
+    "title": "Le soleil se boit frais.",
+    "brand": "Lorina · L'Originale",
+    "sector": "Boisson · Art nouveau",
+    "description": "Une interprétation fraîche et solaire de l'affiche illustrée.",
+    "image": "https://static.metricool.com/planner/202611/8064555-file-17430694329877421220.png"
+  },
+  {
+    "id": "samsung",
+    "title": "Photographiez l'invisible.",
+    "brand": "Samsung · Galaxy S26 Ultra",
+    "sector": "Technologie · Science-fiction",
+    "description": "Un imaginaire visuel construit autour de la photographie.",
+    "image": "https://static.metricool.com/planner/202611/8064555-file-12999763814982506601.png"
+  },
+  {
+    "id": "rituals",
+    "title": "Ralentir est un luxe.",
+    "brand": "Rituals · The Ritual of Sakura",
+    "sector": "Beauté · Éditorial",
+    "description": "Un instant de douceur et de contemplation.",
+    "image": "https://static.metricool.com/planner/202611/8064555-file-1093581146190122642.png"
+  },
+  {
+    "id": "marshall",
+    "title": "Le stade tient dans ta main.",
+    "brand": "Marshall · Emberton III",
+    "sector": "Musique · Produit",
+    "description": "L'énergie d'une scène dans un format compact.",
+    "image": "https://static.metricool.com/planner/202611/8064555-file-16196674444565519310.png"
+  },
+  {
+    "id": "lindt",
+    "title": "L'intensité est un art.",
+    "brand": "Lindt · Excellence Noir 70 %",
+    "sector": "Gastronomie · Luxe",
+    "description": "La matière et le contraste au service du chocolat.",
+    "image": "https://static.metricool.com/planner/202611/8064555-file-18281912714550612572.png"
+  },
+  {
+    "id": "nespresso",
+    "title": "Un pop de bonne humeur.",
+    "brand": "Nespresso · Vertuo Pop",
+    "sector": "Lifestyle · Pop",
+    "description": "Une composition colorée et énergique.",
+    "image": "https://static.metricool.com/planner/202611/8064555-file-17157180322547944105.png"
+  },
+  {
+    "id": "yeti",
+    "title": "Construite pour l'inconnu.",
+    "brand": "YETI · Rambler",
+    "sector": "Outdoor · Aventure",
+    "description": "Une proposition visuelle tournée vers l'exploration.",
+    "image": "https://static.metricool.com/planner/202611/8064555-file-14008396176628341910.png"
+  }
+];
+const demoAds = [...internationalAds, ...guyaneAds];
+const collections = [
+  { id: "international", name: "Horizons internationaux", subtitle: "Sport, luxe, technologie, gastronomie et lifestyle.", ads: internationalAds, offset: 0 },
+  { id: "guyane", name: "Racines guyanaises", subtitle: "Matières, patrimoine, savoir-faire et culture amazonienne.", ads: guyaneAds, offset: internationalAds.length },
+];
+
 export function DemoAdsGallery() {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -128,18 +216,16 @@ export function DemoAdsGallery() {
       <Container>
         <div className="mb-12 flex flex-col gap-7 md:mb-16 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <span className="tag mb-5">Laboratoire créatif · Guyane</span>
+            <span className="tag mb-5">Laboratoire créatif · Publicité</span>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--obsidian-accent)]">
               Direction artistique / Publicité image
             </p>
             <h2 id="demo-ads-title" className="text-4xl font-semibold tracking-tight text-[var(--obsidian-white)] md:text-5xl lg:text-6xl">
-              10 visions.
-              <span className="block font-light text-[var(--obsidian-accent)]">Une signature créative.</span>
+              20 concepts.
+              <span className="block font-light text-[var(--obsidian-accent)]">Deux collections. Une signature.</span>
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--obsidian-text-muted)] md:text-lg">
-              Un terrain d'exploration publicitaire inspiré de la Guyane : product shots,
-              univers de marque, photographie cinématographique et compositions éditoriales.
-              Dix affiches, dix directions artistiques singulières.
+              Deux regards sur la création publicitaire : dix concepts pour des marques internationales et dix inspirés de la Guyane. Du produit à l'identité visuelle, chaque affiche explore une direction artistique singulière.
             </p>
           </div>
           <div className="shrink-0 rounded-xl border border-[var(--obsidian-accent)]/30 bg-[var(--obsidian-accent-dim)] px-5 py-4 lg:max-w-64">
@@ -152,8 +238,19 @@ export function DemoAdsGallery() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {demoAds.map((ad, index) => (
+        <div className="space-y-20">
+          {collections.map((collection, collectionIndex) => (
+            <div key={collection.id} id={collection.id} className="scroll-mt-28">
+              <div className="mb-7 flex flex-wrap items-end justify-between gap-4 border-b border-[var(--obsidian-border)] pb-5">
+                <div>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--obsidian-accent)]">Collection 0{collectionIndex + 1} / 02</p>
+                  <h3 className="text-2xl font-semibold text-[var(--obsidian-white)] md:text-4xl">{collection.name}</h3>
+                  <p className="mt-2 text-sm text-[var(--obsidian-text-muted)]">{collection.subtitle}</p>
+                </div>
+                <span className="tag">10 créations</span>
+              </div>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          {collection.ads.map((ad, index) => (
             <article
               key={ad.id}
               className="group overflow-hidden rounded-2xl border border-[var(--obsidian-border)] bg-[var(--obsidian-card)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--obsidian-accent)]/60 hover:shadow-[0_24px_60px_rgba(0,0,0,0.48)]"
@@ -162,7 +259,7 @@ export function DemoAdsGallery() {
                 type="button"
                 className="block w-full cursor-zoom-in text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-[var(--obsidian-accent)]"
                 aria-label={`Agrandir l'affiche de démonstration : ${ad.brand}`}
-                onClick={() => setSelected(index)}
+                onClick={() => setSelected(collection.offset + index)}
               >
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#0c0c0e]">
                   <img
@@ -172,7 +269,7 @@ export function DemoAdsGallery() {
                     height={1536}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                    className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                   />
                   <span className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/65 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.13em] text-white backdrop-blur-md">
                     Démonstration
@@ -192,11 +289,14 @@ export function DemoAdsGallery() {
               </button>
             </article>
           ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-5 border-t border-[var(--obsidian-border)] pt-8 md:flex-row md:items-center">
           <p className="max-w-3xl text-xs leading-relaxed text-[var(--obsidian-text-muted)]">
-            Ces dix visuels sont des études créatives réalisées à des fins de démonstration.
+            Ces vingt visuels sont des études créatives réalisées à des fins de démonstration.
             Ils ne constituent ni des campagnes officielles, ni des commandes, ni une approbation des marques représentées.
             Les créations figurant des boissons alcoolisées sont des exercices de direction artistique, non des supports destinés à la diffusion publicitaire.
           </p>

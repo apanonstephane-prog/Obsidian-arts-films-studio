@@ -216,8 +216,8 @@ export function PortfolioGrid({ limit, showFilters = true, showCTA = false }: Po
       <Container>
         <SectionHeader
           tag="Réalisations"
-          title="Nos derniers projets"
-          subtitle="Un aperçu de ce que nous créons pour nos clients. Chaque projet est unique, pensé sur mesure."
+          title="Autres réalisations"
+          subtitle="Retrouvez aussi nos clips, films, projets musicaux, expériences web et autres travaux du studio."
         />
 
         {showFilters && (
