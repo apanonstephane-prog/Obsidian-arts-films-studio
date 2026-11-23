@@ -46,13 +46,8 @@ const chapters = [
   },
 ];
 
-// Titles, descriptions and visuals are sourced exclusively from the official portfolio.
-// This curated preview never introduces or renames a production.
-const featuredProjectIds = ["1", "6", "3", "5"] as const;
-const projects: PortfolioItem[] = featuredProjectIds
-  .map((id) => portfolioItems.find((item) => item.id === id))
-  .filter((item): item is PortfolioItem => Boolean(item));
-
+// The whole official catalogue is displayed here, with original titles and media.
+const projects: PortfolioItem[] = portfolioItems;
 
 function useCinematicReveal() {
   useEffect(() => {
@@ -117,22 +112,28 @@ function InteractiveValue() {
 }
 
 function ProjectLink({ project, index }: { project: PortfolioItem; index: number }) {
-  const image = project.thumbnail || "/images/hero-main.jpg";
-  const featuredClass = index === 0 ? "cin-project--feature" : index === 3 ? "cin-project--wide" : "";
+  const image = project.thumbnail || (project.embedType === "youtube" && project.embedSrc
+    ? `https://img.youtube.com/vi/${project.embedSrc}/hqdefault.jpg`
+    : "/images/hero-main.jpg");
+  const remoteImage = image.startsWith("https://");
   return (
     <Link
       href="/portfolio#portfolio"
-      className={`cin-project ${featuredClass}`}
+      className="cin-project"
       aria-label={`Voir la réalisation : ${project.title}`}
       data-reveal
     >
-      <Image
-        src={image}
-        alt=""
-        fill
-        sizes={index === 0 || index === 3 ? "(max-width: 900px) 100vw, 60vw" : "(max-width: 900px) 100vw, 50vw"}
-        className="cin-project__image"
-      />
+      {remoteImage ? (
+        <img src={image} alt="" loading="lazy" decoding="async" className="cin-project__image cin-project__image--remote" />
+      ) : (
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes="(max-width: 760px) 88vw, (max-width: 1400px) 70vw, 760px"
+          className="cin-project__image"
+        />
+      )}
       <div className="cin-project__shade" aria-hidden="true" />
       <span className="cin-project__num">{String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
       <span className="cin-project__arrow"><ArrowUpRight size={23} aria-hidden="true" /></span>
@@ -149,6 +150,7 @@ function ProjectLink({ project, index }: { project: PortfolioItem; index: number
 export function CinematicHome() {
   const [activeChapter, setActiveChapter] = useState(0);
   const chapterNodes = useRef<(HTMLElement | null)[]>([]);
+  const projectRail = useRef<HTMLDivElement>(null);
   useCinematicReveal();
 
   useEffect(() => {
@@ -272,7 +274,16 @@ export function CinematicHome() {
             <div><span className="cin-eyebrow"><span className="cin-dot" /> PORTFOLIO SÉLECTIONNÉ</span><h2 id="cin-work-heading">Le travail parle.<br /><em>Nous lui donnons de la voix.</em></h2></div>
             <Link href="/portfolio" className="cin-text-link">Toutes les réalisations <ArrowUpRight size={19} aria-hidden="true" /></Link>
           </div>
-          <div className="cin-work__grid">{projects.map((project, index) => <ProjectLink key={project.id} project={project} index={index} />)}</div>
+          <div className="cin-work__controls">
+            <span>{String(projects.length).padStart(2, "0")} RÉALISATIONS · CATALOGUE OFFICIEL</span>
+            <div className="cin-work__buttons">
+              <button type="button" aria-label="Réalisations précédentes" onClick={() => projectRail.current?.scrollBy({ left: -470, behavior: "smooth" })}><ArrowRight className="cin-work__back" size={20} aria-hidden="true" /></button>
+              <button type="button" aria-label="Réalisations suivantes" onClick={() => projectRail.current?.scrollBy({ left: 470, behavior: "smooth" })}><ArrowRight size={20} aria-hidden="true" /></button>
+            </div>
+          </div>
+          <div className="cin-work__grid" ref={projectRail} role="region" tabIndex={0} aria-label="Les dix réalisations du portfolio officiel">
+            {projects.map((project, index) => <ProjectLink key={project.id} project={project} index={index} />)}
+          </div>
           <p className="cin-work__disclaimer">Sélection issue du portfolio officiel. Retrouvez les applications, les vingt concepts publicitaires de démonstration, les films récents et toutes les autres réalisations sur la page dédiée.</p>
         </div>
       </section>
