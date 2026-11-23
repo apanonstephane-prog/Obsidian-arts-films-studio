@@ -83,7 +83,7 @@ function InteractiveValue() {
     <div className="cin-value__panel" data-reveal>
       <div className="cin-value__panel-top">
         <span className="cin-eyebrow">ESTIMATION INTERACTIVE</span>
-        <span className="cin-value__index">OBSIDIAN / LAB 001</span>
+        <span className="cin-value__index">SIMULATION INDICATIVE</span>
       </div>
       <h3>Que vaut votre temps ?</h3>
       <p className="cin-value__intro">Estimez le coût théorique des tâches répétitives. Ce calcul illustre un potentiel d'optimisation, pas une économie garantie.</p>
