@@ -4,6 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
+import { portfolioItems, type PortfolioItem } from "@/lib/data/portfolio";
+import { siteConfig } from "@/lib/data/navigation";
+import { ServicesGrid } from "@/components/sections/ServicesGrid";
+import { ForWho } from "@/components/sections/ForWho";
+import { Approach } from "@/components/sections/Approach";
+import { WhyObsidian } from "@/components/sections/WhyObsidian";
+import { FAQSection } from "@/components/sections/FAQSection";
+import { DemoAdsGallery } from "@/components/sections/DemoAdsGallery";
 
 const chapters = [
   {
@@ -38,48 +46,13 @@ const chapters = [
   },
 ];
 
-const projects = [
-  {
-    index: "01",
-    category: "PUBLICITÉ / FILM",
-    title: "Petits Plans Privés",
-    description: "Une identité publicitaire conçue pour les formats sociaux.",
-    image: "/images/portfolio-petits-plans-prives.jpg",
-    label: "Voir le film",
-    href: "/portfolio",
-    className: "cin-project--feature",
-  },
-  {
-    index: "02",
-    category: "PLATEFORME / DIGITAL",
-    title: "OcciFlow",
-    description: "Une plateforme territoriale pensée pour les acteurs locaux.",
-    image: "/images/portfolio-occiflow.jpg",
-    label: "Explorer le projet",
-    href: "https://occiflow.vercel.app",
-    className: "",
-  },
-  {
-    index: "03",
-    category: "ANIMATION / FILM",
-    title: "Moostik",
-    description: "Une création animée à l'univers singulier.",
-    image: "/images/portfolio-moostik.jpg",
-    label: "Voir la réalisation",
-    href: "/portfolio",
-    className: "",
-  },
-  {
-    index: "04",
-    category: "APPLICATION / IA",
-    title: "Aides & Associations",
-    description: "Un outil de navigation dans les dispositifs d'aide.",
-    image: "/images/portfolio-aides-ia.jpg",
-    label: "Explorer l'application",
-    href: "https://aides-particulier-association.vercel.app",
-    className: "cin-project--wide",
-  },
-];
+// Titles, descriptions and visuals are sourced exclusively from the official portfolio.
+// This curated preview never introduces or renames a production.
+const featuredProjectIds = ["1", "6", "3", "5"] as const;
+const projects: PortfolioItem[] = featuredProjectIds
+  .map((id) => portfolioItems.find((item) => item.id === id))
+  .filter((item): item is PortfolioItem => Boolean(item));
+
 
 function useCinematicReveal() {
   useEffect(() => {
@@ -143,25 +116,31 @@ function InteractiveValue() {
   );
 }
 
-function ProjectLink({ project }: { project: (typeof projects)[number] }) {
-  const external = project.href.startsWith("http");
+function ProjectLink({ project, index }: { project: PortfolioItem; index: number }) {
+  const image = project.thumbnail || "/images/hero-main.jpg";
+  const featuredClass = index === 0 ? "cin-project--feature" : index === 3 ? "cin-project--wide" : "";
   return (
     <Link
-      href={project.href}
-      className={`cin-project ${project.className}`}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      aria-label={`${project.label} : ${project.title}`}
+      href="/portfolio#portfolio"
+      className={`cin-project ${featuredClass}`}
+      aria-label={`Voir la réalisation : ${project.title}`}
       data-reveal
     >
-      <Image src={project.image} alt="" fill sizes={project.className === "cin-project--feature" ? "(max-width: 900px) 100vw, 60vw" : "(max-width: 900px) 100vw, 50vw"} className="cin-project__image" />
+      <Image
+        src={image}
+        alt=""
+        fill
+        sizes={index === 0 || index === 3 ? "(max-width: 900px) 100vw, 60vw" : "(max-width: 900px) 100vw, 50vw"}
+        className="cin-project__image"
+      />
       <div className="cin-project__shade" aria-hidden="true" />
-      <span className="cin-project__num">{project.index} / 04</span>
+      <span className="cin-project__num">{String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
       <span className="cin-project__arrow"><ArrowUpRight size={23} aria-hidden="true" /></span>
       <div className="cin-project__copy">
-        <span className="cin-project__category">{project.category}</span>
+        <span className="cin-project__category">{project.categoryLabel.toUpperCase()}</span>
         <h3>{project.title}</h3>
         <p>{project.description}</p>
-        <span className="cin-project__visit">{project.label} <ArrowRight size={16} aria-hidden="true" /></span>
+        <span className="cin-project__visit">Voir la réalisation <ArrowRight size={16} aria-hidden="true" /></span>
       </div>
     </Link>
   );
@@ -221,11 +200,16 @@ export function CinematicHome() {
         </div>
         <div className="cin-hero__content">
           <span className="cin-hero__serial">OBSIDIAN / NOUVELLE DIMENSION</span>
-          <h1 id="cin-hero-heading">L&apos;idée est le début.<br /><em>L&apos;impact, notre métier.</em></h1>
-          <p>Films, expériences web et intelligence artificielle. Nous transformons les ambitions en créations qui se voient, se vivent et servent un objectif.</p>
+          <h1 id="cin-hero-heading">Vidéo, web et IA<br /><em>qui font vraiment la différence.</em></h1>
+          <p>OBSIDIAN accompagne artistes, marques, entreprises, indépendants et particuliers avec des solutions créatives et digitales sur mesure. Un seul interlocuteur. Des résultats concrets.</p>
           <div className="cin-hero__actions">
-            <Link href="#projets" className="cin-btn cin-btn--gold">Explorer nos réalisations <ArrowUpRight size={19} aria-hidden="true" /></Link>
-            <Link href="/contact" className="cin-btn cin-btn--ghost">Parler de votre projet <ArrowRight size={18} aria-hidden="true" /></Link>
+            <Link href="#projets" className="cin-btn cin-btn--gold">Voir nos réalisations <ArrowUpRight size={19} aria-hidden="true" /></Link>
+            <Link href="/contact" className="cin-btn cin-btn--ghost">Demander un devis <ArrowRight size={18} aria-hidden="true" /></Link>
+          </div>
+          <div className="cin-hero__proof" aria-label="Nos engagements">
+            <span>Réponse rapide</span>
+            <span>Solutions sur mesure</span>
+            <span>Devis personnalisé</span>
           </div>
         </div>
         <div className="cin-hero__foot">
@@ -278,16 +262,23 @@ export function CinematicHome() {
         </div>
       </section>
 
+      {/* All eight official services and six audiences remain available with their paid imagery. */}
+      <div className="cin-original cin-original--services"><ServicesGrid /></div>
+      <div className="cin-original cin-original--audiences"><ForWho /></div>
+
       <section className="cin-work" id="projets" aria-labelledby="cin-work-heading">
         <div className="cin-container">
           <div className="cin-section-heading" data-reveal>
             <div><span className="cin-eyebrow"><span className="cin-dot" /> PORTFOLIO SÉLECTIONNÉ</span><h2 id="cin-work-heading">Le travail parle.<br /><em>Nous lui donnons de la voix.</em></h2></div>
             <Link href="/portfolio" className="cin-text-link">Toutes les réalisations <ArrowUpRight size={19} aria-hidden="true" /></Link>
           </div>
-          <div className="cin-work__grid">{projects.map((project) => <ProjectLink key={project.index} project={project} />)}</div>
-          <p className="cin-work__disclaimer">Sélection de réalisations et de projets présentés à titre de portfolio. Les projets de démonstration sont identifiés comme tels dans leur présentation détaillée.</p>
+          <div className="cin-work__grid">{projects.map((project, index) => <ProjectLink key={project.id} project={project} index={index} />)}</div>
+          <p className="cin-work__disclaimer">Sélection issue du portfolio officiel. Retrouvez les applications, les vingt concepts publicitaires de démonstration, les films récents et toutes les autres réalisations sur la page dédiée.</p>
         </div>
       </section>
+
+      {/* Reuse the existing twenty paid demonstration images, titles and legal disclaimers. */}
+      <div className="cin-original cin-original--demo"><DemoAdsGallery /></div>
 
       <section className="cin-value" id="intelligence" aria-labelledby="cin-value-heading">
         <div className="cin-container cin-value__grid">
@@ -301,26 +292,19 @@ export function CinematicHome() {
         </div>
       </section>
 
-      <section className="cin-method" aria-labelledby="cin-method-heading">
-        <div className="cin-container cin-method__inner">
-          <span className="cin-eyebrow"><span className="cin-dot" /> NOTRE FAÇON DE CRÉER</span>
-          <h2 id="cin-method-heading" data-reveal>Une idée forte.<br />Une exécution <em>sans compromis.</em></h2>
-          <div className="cin-method__steps">
-            <div data-reveal><span>01 / COMPRENDRE</span><p>Votre marque, votre public, votre objectif.</p></div>
-            <div data-reveal><span>02 / CONCEVOIR</span><p>Un concept unique plutôt qu'une formule copiée.</p></div>
-            <div data-reveal><span>03 / PRODUIRE</span><p>Une direction artistique au service du résultat.</p></div>
-            <div data-reveal><span>04 / LIVRER</span><p>Un résultat fonctionnel, prêt à rencontrer son public.</p></div>
-          </div>
-        </div>
-      </section>
+      {/* Keep all original process, differentiators and FAQ copy, without rewriting claims. */}
+      <div className="cin-original cin-original--approach"><Approach /></div>
+      <div className="cin-original cin-original--why"><WhyObsidian /></div>
+      <div className="cin-original cin-original--faq"><FAQSection /></div>
 
       <section className="cin-outro" aria-labelledby="cin-outro-heading">
         <div className="cin-outro__background" aria-hidden="true"><Image src="/images/cta-final-bg.jpg" alt="" fill sizes="100vw" /></div>
         <div className="cin-container cin-outro__content" data-reveal>
           <span className="cin-eyebrow"><span className="cin-dot" /> VOTRE PROCHAIN CHAPITRE</span>
-          <h2 id="cin-outro-heading">Et si on créait<br /><em>l'inoubliable ?</em></h2>
-          <p>Un film à imaginer. Une marque à révéler. Une activité à transformer. Parlons de ce que nous pouvons construire ensemble.</p>
-          <Link href="/contact" className="cin-btn cin-btn--gold">Démarrer un projet <ArrowUpRight size={20} aria-hidden="true" /></Link>
+          <h2 id="cin-outro-heading">Parlons de<br /><em>votre projet.</em></h2>
+          <p>Que vous ayez une idée précise ou juste une envie de faire avancer les choses, c'est par ici que ça commence. Échange gratuit, sans engagement.</p>
+          <Link href="/contact" className="cin-btn cin-btn--gold">Demander un devis <ArrowUpRight size={20} aria-hidden="true" /></Link>
+          <a className="cin-outro__email" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
           <div className="cin-outro__footer"><span>OBSIDIAN ARTS FILMS STUDIO</span><span>TOULOUSE / GUYANE</span><Link href="/a-propos">DÉCOUVRIR LE STUDIO <ArrowUpRight size={14} aria-hidden="true" /></Link></div>
         </div>
       </section>
