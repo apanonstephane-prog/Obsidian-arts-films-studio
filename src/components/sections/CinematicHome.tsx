@@ -277,6 +277,45 @@ export function CinematicHome() {
         </div>
       </section>
 
+      {/* Existing paid video media — playable, not auto-downloaded or duplicated as new productions. */}
+      <section className="cin-screen" id="films" aria-labelledby="cin-screen-title">
+        <div className="cin-container">
+          <div className="cin-section-heading" data-reveal>
+            <div>
+              <span className="cin-eyebrow"><span className="cin-dot" /> NOS FILMS EN MOUVEMENT</span>
+              <h2 id="cin-screen-title">L'image se vit.<br /><em>Pas seulement se regarde.</em></h2>
+            </div>
+            <Link href="/portfolio#films-recents" className="cin-text-link">Voir les films récents <ArrowUpRight size={19} aria-hidden="true" /></Link>
+          </div>
+          <div className="cin-screen__grid">
+            {portfolioItems
+              .filter((item) => (item.id === "1" || item.id === "3") && item.embedType === "video" && item.embedSrc)
+              .map((item, index) => (
+                <article className={`cin-screen__film ${index === 0 ? "cin-screen__film--primary" : ""}`} key={item.id} data-reveal>
+                  <div className="cin-screen__player">
+                    <video
+                      src={item.embedSrc}
+                      poster={item.thumbnail}
+                      controls
+                      playsInline
+                      preload="none"
+                      aria-label={`Regarder : ${item.title}`}
+                    >
+                      Votre navigateur ne peut pas lire la vidéo. <Link href="/portfolio">Voir le portfolio</Link>.
+                    </video>
+                    <span className="cin-screen__frame" aria-hidden="true">OBSIDIAN / FILMS</span>
+                  </div>
+                  <div className="cin-screen__info">
+                    <span className="cin-eyebrow">{item.categoryLabel}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </article>
+              ))}
+          </div>
+        </div>
+      </section>
+
       {/* Reuse the existing twenty paid demonstration images, titles and legal disclaimers. */}
       <div className="cin-original cin-original--demo"><DemoAdsGallery /></div>
 
