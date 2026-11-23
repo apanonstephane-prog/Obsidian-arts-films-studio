@@ -419,3 +419,30 @@
  .cin-screen__player video {aspect-ratio:16/9;}
  .cin-screen__info {padding:24px;}
 }
+
+
+/* FULL OFFICIAL PORTFOLIO — native horizontal editorial rail, all ten entries */
+.cin-work__controls {display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 0 20px;}
+.cin-work__controls > span {font-size:11px;letter-spacing:.17em;font-weight:750;color:#8e6c44;}
+.cin-work__buttons {display:flex;gap:9px;}
+.cin-work__buttons button {width:48px;height:48px;border:1px solid rgba(39,31,23,.33);display:grid;place-items:center;cursor:pointer;background:transparent;color:#252127;transition:background .2s,color .2s;}
+.cin-work__buttons button:hover {background:#222028;color:#fff;}
+.cin-work__back {transform:rotate(180deg);}
+.cin-work__grid {
+  display:flex !important;
+  gap:17px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  overscroll-behavior-inline:contain;
+  scrollbar-color:#b69a73 transparent;
+  scrollbar-width:thin;
+  padding:0 0 23px;
+}
+.cin-work__grid:focus-visible {outline:2px solid #9c7748;outline-offset:3px;}
+.cin-work__grid .cin-project {flex:0 0 clamp(330px,47vw,725px);height:clamp(410px,48vw,595px);scroll-snap-align:start;grid-column:auto;}
+.cin-work__grid .cin-project__image--remote {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+@media (max-width:760px) {
+  .cin-work__controls > span {font-size:9px;letter-spacing:.08em;}
+  .cin-work__buttons button {width:40px;height:40px;}
+  .cin-work__grid .cin-project {flex-basis:min(88vw,430px);height:clamp(395px,114vw,485px);}
+}
