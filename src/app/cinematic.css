@@ -446,3 +446,40 @@
   .cin-work__buttons button {width:40px;height:40px;}
   .cin-work__grid .cin-project {flex-basis:min(88vw,430px);height:clamp(395px,114vw,485px);}
 }
+
+
+/* Contextual header/footer styling: same official logo, menu, contacts and links. */
+body:has(> main > .cinematic) > header {
+  background:rgba(7,8,12,.78);
+  -webkit-backdrop-filter:blur(20px) saturate(1.2);
+  backdrop-filter:blur(20px) saturate(1.2);
+  border-color:rgba(215,187,134,.18);
+}
+body:has(> main > .cinematic) > header > div {max-width:1440px;}
+body:has(> main > .cinematic) > header nav a {
+  border-radius:0;
+  background:transparent;
+  font-size:11px;
+  letter-spacing:.075em;
+  text-transform:uppercase;
+  transition:color .25s ease;
+}
+body:has(> main > .cinematic) > header nav a:hover {
+  color:#f0d9a7;
+  background:transparent;
+}
+body:has(> main > .cinematic) > header a[href="/contact"] {
+  border-radius:2px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  font-size:11px;
+  padding-block:12px;
+}
+body:has(> main > .cinematic) > footer {
+  background:#0b0b11;
+  border-top:1px solid rgba(215,187,134,.22);
+}
+body:has(> main > .cinematic) > footer > div:first-child {max-width:1440px;}
+body:has(> main > .cinematic) > footer h3 {letter-spacing:.14em;font-size:11px;color:#e0c698;}
+body:has(> main > .cinematic) > footer li a {font-size:13px;}
+body:has(> main > .cinematic) > footer a:hover {color:#f0d9a7;}
