@@ -368,7 +368,7 @@
 .cin-original--approach .w-16.h-16 {width:clamp(95px,11vw,152px);height:clamp(95px,11vw,152px);border-radius:4px;}
 .cin-original--approach .w-16.h-16 img {opacity:.72;filter:saturate(.7);}
 .cin-original--approach .w-16.h-16 span {font-size:clamp(20px,3vw,36px);color:#f5e4c3;text-shadow:0 2px 15px #000;}
-.cin-original--approach .lg\\:mt-6 {margin-top:32px;}
+.cin-original--approach [class~="lg:mt-6"] {margin-top:32px;}
 .cin-original--approach h3 {font-size:clamp(17px,1.5vw,23px);letter-spacing:-.035em;}
 .cin-original--approach p {font-size:14px;line-height:1.8;color:#bbb4c1;}
 .cin-original--why > section {border-top:1px solid rgba(255,255,255,.08);background:#090a10;}
